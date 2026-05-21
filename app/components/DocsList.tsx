@@ -8,15 +8,21 @@ const docsData = {
     cn: [
         {
             id: 1,
+            title: 'README (英文)',
+            description: 'HippoX 项目的中文版说明文档，包含核心原理、工作流模式和原子技能清单',
+            url: 'https://github.com/0xhappyboy/hippox/blob/main/README.md',
+        },
+        {
+            id: 2,
             title: 'README (中文)',
             description: 'HippoX 项目的中文版说明文档，包含核心原理、工作流模式和原子技能清单',
             url: 'https://github.com/0xhappyboy/hippox/blob/main/README_zh-CN.md',
         },
         {
-            id: 2,
-            title: 'README (英文)',
-            description: 'HippoX project documentation in English, including core principles, workflow modes and atomic skill list',
-            url: 'https://github.com/0xhappyboy/hippox/blob/main/README.md',
+            id: 3,
+            title: 'HippoX 英文文档',
+            description: 'HippoX 项目完整英文文档',
+            url: 'https://hippox-docs-en.vercel.app/',
         },
     ],
     en: [
@@ -29,8 +35,14 @@ const docsData = {
         {
             id: 2,
             title: 'README (Chinese)',
-            description: 'HippoX 项目的中文版说明文档，包含核心原理、工作流模式和原子技能清单',
+            description: 'HippoX project documentation in English, including core principles, workflow modes and atomic skill list',
             url: 'https://github.com/0xhappyboy/hippox/blob/main/README_zh-CN.md',
+        },
+        {
+            id: 3,
+            title: 'HippoX English Documentation',
+            description: 'Complete English documentation for the HippoX project',
+            url: 'https://hippox-docs-en.vercel.app/',
         },
     ],
 };

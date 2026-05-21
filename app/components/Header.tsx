@@ -11,6 +11,7 @@ export default function Header() {
   const isCn = locale === 'cn';
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const handleLangMouseEnter = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
@@ -29,18 +30,26 @@ export default function Header() {
   const handleXClick = () => {
     window.open('https://x.com/HippoxHQ', '_blank');
   };
+  const handleCargoClick = () => {
+    window.open('https://crates.io/crates/hippox', '_blank');
+  };
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="flex items-center justify-between px-6 h-14">
         <div className="flex items-center gap-2">
-          <img
-            src="/logo.jpeg"
-            alt="HippoX Logo"
-            className="w-7 h-7 rounded object-cover"
-          />
-          <span className="font-bold text-foreground text-base">
-            HippoX
-          </span>
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => window.location.href = '/'}
+          >
+            <img
+              src="/logo.jpeg"
+              alt="HippoX Logo"
+              className="w-7 h-7 rounded object-cover"
+            />
+            <span className="font-bold text-foreground text-base">
+              HippoX
+            </span>
+          </div>
         </div>
         <div className="flex-1" />
         <div className="flex items-center gap-2.5">
@@ -58,6 +67,27 @@ export default function Header() {
               stroke="none"
             >
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={handleCargoClick}
+            className="p-1.5 rounded-lg border border-border hover:border-muted-foreground transition-colors cursor-pointer"
+            aria-label="Cargo"
+            title={isCn ? 'Cargo 包管理器' : 'Cargo package manager'}
+          >
+            <svg
+              className="w-4 h-4 text-foreground"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+              />
             </svg>
           </button>
           <button
