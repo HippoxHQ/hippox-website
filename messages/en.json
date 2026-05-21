@@ -1,0 +1,52 @@
+{
+  "SiteName": {
+    "name": "HippoX"
+  },
+  "Navigation": {
+    "home": "Home",
+    "docs": "Docs",
+    "blog": "Blog",
+    "github": "GitHub"
+  },
+  "HomePage": {
+    "hero": "HippoX",
+    "tagline": "An reliable AI runtime and skills orchestration engine with autonomous decision-making.",
+    "cta": "Get Started",
+    "docs": "Docs",
+    "features": [
+      "📝 SKILL.md",
+      "🧠 Auto-decide",
+      "⚡ On-demand",
+      "🔌 Extensible"
+    ],
+    "skillsTitle": "Built-in Skills",
+    "skills": [
+      "Web Search",
+      "Data Analysis",
+      "Code Gen",
+      "API Call",
+      "File Process",
+      "Email"
+    ],
+    "statsTitle": "Growth",
+    "projectsTitle": "Ecosystem",
+    "loadMore": "more",
+    "navFeatures": "Features",
+    "navEcosystem": "Ecosystem",
+    "dropdownFeatures": ["Skill-Driven", "Autonomous", "Extensible"],
+    "dropdownEcosystem": ["Satellites", "Plugins", "Integrations"],
+    "coreFeatures": [
+      { "icon": "📝", "title": "SKILL.md", "desc": "write once" },
+      { "icon": "🧠", "title": "Autonomous", "desc": "smart decisions" },
+      { "icon": "⚡", "title": "On-demand", "desc": "dynamic load" },
+      { "icon": "🔌", "title": "Extensible", "desc": "unlimited" }
+    ]
+  },
+  "Header": {
+    "docs": "Docs",
+    "github": "GitHub",
+    "aiRuntime": "HippoX",
+    "languageLabel": "EN",
+    "languageEn": "EN"
+  }
+}
