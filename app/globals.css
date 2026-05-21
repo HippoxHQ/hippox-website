@@ -99,10 +99,14 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 ::selection {
@@ -121,7 +125,8 @@ body {
 }
 
 .gradient-border {
-  background: linear-gradient(var(--background), var(--background)) padding-box,
+  background:
+    linear-gradient(var(--background), var(--background)) padding-box,
     linear-gradient(135deg, var(--chart-1), var(--chart-2)) border-box;
   border: 2px solid transparent;
 }
