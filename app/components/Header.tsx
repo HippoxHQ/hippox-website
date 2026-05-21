@@ -1,64 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useI18n } from '../providers/I18nProvider';
 import { useTheme } from '../providers/ThemeProvider';
 import { useState, useRef } from 'react';
-import cnMessages from '@/messages/cn.json';
-import enMessages from '@/messages/en.json';
-
-const navItems = {
-  en: [
-    { label: 'Features', dropdown: ['Skill-Driven', 'Autonomous Decision', 'Easy Extend', 'Dynamic Loading'] },
-    { label: 'Ecosystem', dropdown: ['Satellites', 'Plugins', 'Integrations', 'Community'] },
-    { label: 'Resources', dropdown: ['Documentation', 'API Reference', 'Examples', 'Blog'] },
-    { label: 'Community', dropdown: ['GitHub', 'Discord', 'Twitter', 'Discussions'] },
-  ],
-  cn: [
-    { label: '核心特性', dropdown: ['Skill驱动', '自主决策', '易于扩展', '动态加载'] },
-    { label: '生态系统', dropdown: ['卫星项目', '插件', '集成', '社区'] },
-    { label: '资源', dropdown: ['文档', 'API参考', '示例', '博客'] },
-    { label: '社区', dropdown: ['GitHub', 'Discord', 'Twitter', '讨论区'] },
-  ]
-};
 
 export default function Header() {
   const { locale, setLocale } = useI18n();
   const { theme, toggleTheme } = useTheme();
   const isCn = locale === 'cn';
-  const items = isCn ? navItems.cn : navItems.en;
-  const headerText = isCn ? cnMessages.Header : enMessages.Header;
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const [showLangDropdown, setShowLangDropdown] = useState(false);
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleMouseEnter = (idx: number) => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-    setOpenDropdown(idx);
-  };
-
-  const handleMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 150);
-  };
-
-  const handleDropdownMouseEnter = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-  };
-
-  const handleDropdownMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 150);
-  };
-
   const handleLangMouseEnter = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
@@ -66,20 +18,17 @@ export default function Header() {
     }
     setShowLangDropdown(true);
   };
-
   const handleLangMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setShowLangDropdown(false);
     }, 150);
   };
-
-  const handleNavClick = (label: string) => {};
-  const handleDocsClick = () => {};
   const handleGithubClick = () => {
-    window.open('https://github.com', '_blank');
+    window.open('https://github.com/HippoxHQ', '_blank');
   };
-  const handleDropdownClick = (sub: string) => {};
-
+  const handleXClick = () => {
+    window.open('https://x.com/HippoxHQ', '_blank');
+  };
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="flex items-center justify-between px-6 h-14">
@@ -93,61 +42,40 @@ export default function Header() {
             HippoX
           </span>
         </div>
-
         <div className="flex-1" />
-
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-6">
-            {items.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative"
-                onMouseEnter={() => handleMouseEnter(idx)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button
-                  type="button"
-                  onClick={() => handleNavClick(item.label)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-                >
-                  {item.label}
-                </button>
-                {openDropdown === idx && (
-                  <div
-                    className="absolute top-full left-0 mt-1 w-48 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden"
-                    onMouseEnter={handleDropdownMouseEnter}
-                    onMouseLeave={handleDropdownMouseLeave}
-                  >
-                    {item.dropdown.map((sub, subIdx) => (
-                      <button
-                        key={subIdx}
-                        type="button"
-                        onClick={() => handleDropdownClick(sub)}
-                        className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
-                      >
-                        {sub}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={handleDocsClick}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+        <div className="flex items-center gap-2.5">
+          <button
+            type="button"
+            onClick={handleXClick}
+            className="p-1.5 rounded-lg border border-border hover:border-muted-foreground transition-colors cursor-pointer"
+            aria-label="X (Twitter)"
+            title={isCn ? '访问 X 账号' : 'Visit X account'}
+          >
+            <svg
+              className="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              stroke="none"
             >
-              {headerText.docs}
-            </button>
-            <button
-              type="button"
-              onClick={handleGithubClick}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={handleGithubClick}
+            className="p-1.5 rounded-lg border border-border hover:border-muted-foreground transition-colors cursor-pointer"
+            aria-label="GitHub"
+            title={isCn ? '访问 GitHub 组织' : 'Visit GitHub organization'}
+          >
+            <svg
+              className="w-4 h-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              stroke="none"
             >
-              {headerText.github}
-            </button>
-          </div>
-
+              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.84 9.49.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.68.92.68 1.85 0 1.34-.01 2.42-.01 2.75 0 .26.18.58.69.48A10.02 10.02 0 0022 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+          </button>
           <button
             type="button"
             onClick={toggleTheme}
@@ -164,7 +92,6 @@ export default function Header() {
               </svg>
             )}
           </button>
-
           <div
             className="relative"
             onMouseEnter={handleLangMouseEnter}
@@ -172,27 +99,27 @@ export default function Header() {
           >
             <button
               type="button"
-              className="p-1.5 rounded-lg border border-border hover:border-muted-foreground transition-colors cursor-pointer text-sm text-muted-foreground"
+              className="px-3 py-1 rounded-lg border border-border hover:border-muted-foreground transition-colors cursor-pointer text-sm font-medium text-muted-foreground"
             >
-              {isCn ? '中文' : 'EN'}
+              {isCn ? 'CN' : 'EN'}
             </button>
             {showLangDropdown && (
               <div
-                className="absolute right-0 mt-1 w-28 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden"
+                className="absolute right-0 mt-1 w-24 bg-card border border-border rounded-lg shadow-lg z-50 overflow-hidden"
                 onMouseEnter={handleLangMouseEnter}
                 onMouseLeave={handleLangMouseLeave}
               >
                 <button
                   type="button"
                   onClick={() => { setLocale('cn'); setShowLangDropdown(false); }}
-                  className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                  className="block w-full text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
                 >
                   中文
                 </button>
                 <button
                   type="button"
                   onClick={() => { setLocale('en'); setShowLangDropdown(false); }}
-                  className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                  className="block w-full text-left px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
                 >
                   English
                 </button>

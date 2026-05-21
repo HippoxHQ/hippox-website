@@ -7,20 +7,16 @@ import { ThemeProvider } from "./providers/ThemeProvider";
 import '@/app/globals.css'
 import { siteConfig } from './config';
 import DynamicHead from "./providers/DynamicHead";
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
-
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
 };
-
 const defaultLocale = 'cn';
-
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
   const locale = 'cn';

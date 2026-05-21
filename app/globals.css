@@ -130,8 +130,6 @@ body {
   border-color: var(--border);
 }
 
-/* 在 globals.css 文件末尾添加这些动画 */
-
 @keyframes fade-in {
   from {
     opacity: 0;
