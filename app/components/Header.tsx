@@ -28,7 +28,7 @@ export default function Header() {
     window.open('https://github.com/HippoxHQ', '_blank');
   };
   const handleXClick = () => {
-    window.open('https://x.com/HippoxHQ', '_blank');
+    window.open('https://x.com/HippoxAI', '_blank');
   };
   const handleCargoClick = () => {
     window.open('https://crates.io/crates/hippox', '_blank');
